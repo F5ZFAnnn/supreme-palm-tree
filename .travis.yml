@@ -4,10 +4,15 @@ go:
 - 1.11.5
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y --no-install-recommends build-essential ca-certificates curl gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 gcc-multilib git mingw-w64 mercurial pkg-config upx
-  - go get github.com/Psiphon-Labs/psiphon-tunnel-core
+  - sudo apt-get install -y --no-install-recommends p7z-full build-essential ca-certificates curl gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 gcc-multilib git mingw-w64 mercurial pkg-config upx
+  - mkdir -p $GOPATH/src/github.com/Psiphon-Labs/
+  - cd $GOPATH/src/github.com/Psiphon-Labs/
+  - curl -o staging-client.zip -L https://github.com/Psiphon-Labs/psiphon-tunnel-core/archive/staging-client.zip
+  - 7z x staging-client.zip
+  - mv psiphon-tunnel-core-staging-client psiphon-tunnel-core
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
+- chmod +x ./make.sh
 - ./make.sh linux
 - ./make.sh windows
 - ls bin/linux
