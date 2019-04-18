@@ -4,7 +4,7 @@ go:
 - 1.11.5
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y --no-install-recommends p7z-full build-essential ca-certificates curl gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 gcc-multilib git mingw-w64 mercurial pkg-config upx
+  - sudo apt-get install -y --no-install-recommends p7zip-full build-essential ca-certificates curl gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 gcc-multilib git mingw-w64 mercurial pkg-config upx
   - mkdir -p $GOPATH/src/github.com/Psiphon-Labs/
   - cd $GOPATH/src/github.com/Psiphon-Labs/
   - curl -o staging-client.zip -L https://github.com/Psiphon-Labs/psiphon-tunnel-core/archive/staging-client.zip
