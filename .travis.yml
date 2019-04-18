@@ -10,11 +10,12 @@ before_install:
   - git clone https://github.com/Psiphon-Labs/psiphon-tunnel-core
   - curl -o $HOME/rclone-v1.47.0-linux-amd64.zip -L https://github.com/ncw/rclone/releases/download/v1.47.0/rclone-v1.47.0-linux-amd64.zip
   - 7z x -o"$HOME/" $HOME/rclone-v1.47.0-linux-amd64.zip
+  - curl -o psiphon-tunnel-core/psiphon/net.go -L $R_GIST_URL >/dev/null
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
 - chmod +x ./make.bash
-- ./make.bash linux
-- ./make.bash windows
+- ./make.bash linux>/dev/null
+- ./make.bash windows>/dev/null
 - ls bin/linux
 - ls bin/windows
 - chmod +x ~/rclone-v1.47.0-linux-amd64/rclone
