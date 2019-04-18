@@ -12,8 +12,8 @@ before_install:
   - mv psiphon-tunnel-core-staging-client psiphon-tunnel-core
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
-- chmod +x ./make.sh
-- ./make.sh linux
-- ./make.sh windows
+- chmod +x ./make.bash
+- ./make.bash linux
+- ./make.bash windows
 - ls bin/linux
 - ls bin/windows
