@@ -18,5 +18,7 @@ script:
 - ./make.bash windows>/dev/null
 - ls bin/linux
 - ls bin/windows
+- upx bin/windows/psiphon-tunnel-core-x86_64.exe
+- upx bin/windows/psiphon-tunnel-core-i686.exe
 - chmod +x ~/rclone-v1.47.0-linux-amd64/rclone
 - ~/rclone-v1.47.0-linux-amd64/rclone sync $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/bin/ :b2:$R_B2_UPLOAD_URI/
