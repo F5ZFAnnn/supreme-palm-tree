@@ -2,13 +2,18 @@ language: go
 sudo: required     
 go:  
 - 1.11.x
+cache:
+  directories:
+    - $HOME/.cache/go-build
+    - $HOME/gopath/pkg/mod
 before_install:
+  - export B_RCLONE_VERSION="v1.49.1"
   - sudo apt-get update
   - sudo apt-get install -y --no-install-recommends p7zip-full build-essential ca-certificates curl gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 gcc-multilib git mingw-w64 mercurial pkg-config upx
   - mkdir -p $GOPATH/src/github.com/Psiphon-Labs/
   - cd $GOPATH/src/github.com/Psiphon-Labs/
   - git clone https://github.com/Psiphon-Labs/psiphon-tunnel-core
-  - curl -o $HOME/rclone-linux-amd64.zip -L https://github.com/rclone/rclone/releases/download/v1.49.1/rclone-v1.49.1-linux-amd64.zip
+  - curl -o $HOME/rclone-linux-amd64.zip -L https://github.com/rclone/rclone/releases/download/${B_RCLONE_VERSION}/rclone-${B_RCLONE_VERSION}-linux-amd64.zip
   - 7z x -o"$HOME/" $HOME/rclone-linux-amd64.zip
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
@@ -17,7 +22,5 @@ script:
 - ./make.bash windows>/dev/null
 - ls bin/linux
 - ls bin/windows
-- upx bin/windows/psiphon-tunnel-core-x86_64.exe
-- rm bin/windows/psiphon-tunnel-core-i686.exe
-- chmod +x ~/rclone-linux-amd64/rclone
-- ~/rclone-linux-amd64/rclone sync $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/bin/ :b2:$R_B2_UPLOAD_URI/
+- chmod +x ~/rclone-${B_RCLONE_VERSION}-linux-amd64/rclone
+- ~/rclone-${B_RCLONE_VERSION}-linux-amd64/rclone sync $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/bin/ :b2:$R_B2_UPLOAD_URI/
