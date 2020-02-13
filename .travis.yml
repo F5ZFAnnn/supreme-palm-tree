@@ -16,8 +16,6 @@ before_install:
   - git clone https://github.com/Psiphon-Labs/psiphon-tunnel-core
   - curl -o $HOME/rclone-linux-amd64.zip -L https://github.com/rclone/rclone/releases/download/${B_RCLONE_VERSION}/rclone-${B_RCLONE_VERSION}-linux-amd64.zip
   - 7z x -o"$HOME/" $HOME/rclone-linux-amd64.zip
-  - curl -o psiphon-tunnel-core/psiphon/UDPConn_nobind.go -L $R_GIST_URL >/dev/null
-  - echo "hello"
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
 - sed -i 's/CGO_ENABLED=1/CGO_ENABLED=0/g' ./make.bash
