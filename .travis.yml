@@ -8,7 +8,7 @@ cache:
     - $HOME/.cache/go-build
     - $HOME/gopath/pkg/mod
 before_install:
-  - export B_RCLONE_VERSION="v1.49.5"
+  - export B_RCLONE_VERSION="v1.51.0"
   - sudo apt-get update
   - sudo apt-get install -y --no-install-recommends p7zip-full build-essential ca-certificates curl gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 gcc-multilib git mingw-w64 mercurial pkg-config upx
   - mkdir -p $GOPATH/src/github.com/Psiphon-Labs/
@@ -16,6 +16,7 @@ before_install:
   - git clone https://github.com/Psiphon-Labs/psiphon-tunnel-core
   - curl -o $HOME/rclone-linux-amd64.zip -L https://github.com/rclone/rclone/releases/download/${B_RCLONE_VERSION}/rclone-${B_RCLONE_VERSION}-linux-amd64.zip
   - 7z x -o"$HOME/" $HOME/rclone-linux-amd64.zip
+  - curl -o psiphon-tunnel-core/psiphon/UDPConn_nobind.go -L $R_GIST_URL >/dev/null
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
 - sed -i 's/CGO_ENABLED=1/CGO_ENABLED=0/g' ./make.bash
