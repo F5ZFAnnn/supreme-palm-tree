@@ -19,6 +19,7 @@ before_install:
 script: 
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
 - sed -i 's/CGO_ENABLED=1/CGO_ENABLED=0/g' ./make.bash
+- sed -i 's/goupx/#goupx/g' ./make.bash
 - chmod +x ./make.bash
 - ./make.bash linux>/dev/null
 - ./make.bash windows>/dev/null
