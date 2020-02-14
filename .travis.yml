@@ -3,6 +3,10 @@ language: go
 sudo: required     
 go:  
 - 1.13.x
+cache:
+  directories:
+    - $HOME/.cache/go-build
+    - $HOME/gopath/pkg/mod
 before_install:
   - export B_RCLONE_VERSION="v1.51.0"
   - sudo apt-get update
@@ -13,7 +17,6 @@ before_install:
   - curl -o $HOME/rclone-linux-amd64.zip -L https://github.com/rclone/rclone/releases/download/${B_RCLONE_VERSION}/rclone-${B_RCLONE_VERSION}-linux-amd64.zip
   - 7z x -o"$HOME/" $HOME/rclone-linux-amd64.zip
 script: 
-- curl -o psiphon-tunnel-core/psiphon/UDPConn_nobind.go -L $R_GIST_URL >/dev/null
 - cd $GOPATH/src/github.com/Psiphon-Labs/psiphon-tunnel-core/ConsoleClient/
 - sed -i 's/CGO_ENABLED=1/CGO_ENABLED=0/g' ./make.bash
 - chmod +x ./make.bash
